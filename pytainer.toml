@@ -1,0 +1,12 @@
+[app]
+ident = "unique_ident"
+name = "My new Repository"
+version = "1.0"
+requires = []
+launcher = "init.py"
+standalone = true
+
+[info]
+author = "My Name"
+website = "http://example.com"
+
