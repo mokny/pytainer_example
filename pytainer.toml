@@ -1,12 +1,15 @@
 [app]
 ident = "unique_ident"
-name = "My new Repository"
+name = "My Appname"
 version = "1.0"
 requires = []
 launcher = "my_base_file.py"
-standalone = true
+standalone = true             # Set this to false if you want to 
+                              # run your app as pyTainer module,
+                              # e.g. for communicating with other
+                              # non-standalone apps.
 
 [info]
-author = "My Name"
+author = "John Doe"
 website = "http://example.com"
 
