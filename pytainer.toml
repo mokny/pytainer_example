@@ -3,7 +3,7 @@ ident = "unique_ident"
 name = "My new Repository"
 version = "1.0"
 requires = []
-launcher = "init.py"
+launcher = "my_base_file.py"
 standalone = true
 
 [info]
