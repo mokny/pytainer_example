@@ -10,24 +10,28 @@ import sys
 print("Outside a function")
 
 active = True
-
+counter = 0
 
 def myLoop():
     global active
+    global counter
     while active:
-        print("Output of some loop from a non blocking thread")
+        counter += 1
+        print("Output of some loop from a non blocking thread - Loop: " + str(counter))
         time.sleep(1)
 
 def pytainer_init(pyTainerThread):
     # 'pyTainerThread' references the underlying thread. See the docs how to use.
-    print("Init function called")
+    print("I am running as a pyTainer Module.")
+    print("Init function called.")
     myLoop()
 
 def pytainer_stop(pyTainerThread):
-    print("Stop function called")
+    print("Stop function called.")
     global active
     active = False
 
 # This way you can detect if your app is running inside pyTainer. If not, call the loop 'manually'
 if not 'pytainerserver' in sys.modules:
+    print("Not running as pyTainer Module, initializing manually.")
     myLoop()
