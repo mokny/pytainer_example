@@ -11,7 +11,7 @@ import sys
 #import pathlib
 #sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
 #import pytaineripc
-#pytaineripc.send("MyMessage")
+#pytaineripc.do("METHOD")
 
 print("Outside a function")
 
