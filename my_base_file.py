@@ -7,6 +7,12 @@ import sys
 #   sys.path.insert(0, abspath + '/mylibdir')
 #   import mylib
 
+# Communicating with pyTainer if this is a standalone APP
+#import pathlib
+#sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
+#import pytaineripc
+#pytaineripc.send("MyMessage")
+
 print("Outside a function")
 
 active = True
