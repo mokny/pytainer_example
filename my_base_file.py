@@ -9,7 +9,7 @@ import pathlib
 active = True
 
 # This is an example loop, that will run with or without pyTainer.
-def mainLoop():
+def main():
     print(config['greeting'])  # 'greeting' was defined at the pytainer.toml file
     counter = 0
     while active:
@@ -18,14 +18,13 @@ def mainLoop():
         time.sleep(config['sleeptime'])
 
 # This function gets called when the app was started as NON-Standalone
+# pyTainer passes the configuration as parameter - Here app.config
 def pytainer_init(app):
-    # 'pyTainerThread' references the underlying thread. See the docs how to use.
     print("I am running as a pyTainer Module.")
     print("Init function called.")
     global config
     config = app.config
-    
-    mainLoop()
+    main() # Start our main function from here
 
 # This function gets called when the app was stopped as NON-Standalone
 def pytainer_stop(app):
@@ -36,13 +35,15 @@ def pytainer_stop(app):
 # This detects if the app is running inside pyTainer.
 if not 'pytainerserver' in sys.modules:
     print("Not running as pyTainer Module, initializing manually.")
+    
+    # Import the IPC interface to communicate with pyTainer
     sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
     import pytaineripc
 
-    # Standalone Apps get the config via the IPC Interface
+    # Fetch the configuration from pyTainer
     config = pytaineripc.getConfig('unique_ident') # 'unique_ident' is the ident defined at the pytainer.toml file
     
-    mainLoop()
+    main() # Start our main function from here
 
 
 
