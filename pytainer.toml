@@ -14,6 +14,7 @@ author = "John Doe"
 website = "http://example.com"
 
 # Custom configuration variables. These vars can be directly edited in the pyTainer UI
+# The 4 properties title, description, type, value MUST be defined.
 
 [config.sleeptime]
 title = "Sleeptime"
