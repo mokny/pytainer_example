@@ -13,12 +13,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
 import pytaineripc
 
 # Standalone Apps get the config via the IPC Interface
-config = pytaineripc.getConfig('unique_ident')
+config = pytaineripc.getConfig('unique_ident') # 'unique_ident' is the ident defined at the pytainer.toml file
 
-print(config)
-
-print(config['greeting'])
-print("Outside a function")
+print(config['greeting'])       # 'greeting' was defined at the pytainer.toml file
 
 active = True
 counter = 0
@@ -31,13 +28,13 @@ def myLoop():
         print("Output of some loop from a non blocking thread - Loop: " + str(counter) + " - Now waiting for " + str(config['sleeptime']) + " seconds")
         time.sleep(config['sleeptime'])
 
-def pytainer_init(pyTainerThread):
+def pytainer_init(app):
     # 'pyTainerThread' references the underlying thread. See the docs how to use.
     print("I am running as a pyTainer Module.")
     print("Init function called.")
     myLoop()
 
-def pytainer_stop(pyTainerThread):
+def pytainer_stop(app):
     print("Stop function called.")
     global active
     active = False
