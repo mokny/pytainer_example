@@ -8,10 +8,14 @@ import sys
 #   import mylib
 
 # Communicating with pyTainer if this is a standalone APP
-#import pathlib
-#sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
-#import pytaineripc
-#pytaineripc.do("METHOD")
+import pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
+import pytaineripc
+
+# Standalone Apps get the config via the IPC Interface
+config = pytaineripc.getConfig('unique_ident')
+
+print(config)
 
 print("Outside a function")
 
