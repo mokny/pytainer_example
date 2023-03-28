@@ -17,6 +17,7 @@ config = pytaineripc.getConfig('unique_ident')
 
 print(config)
 
+print(config['greeting'])
 print("Outside a function")
 
 active = True
@@ -27,8 +28,8 @@ def myLoop():
     global counter
     while active:
         counter += 1
-        print("Output of some loop from a non blocking thread - Loop: " + str(counter))
-        time.sleep(1)
+        print("Output of some loop from a non blocking thread - Loop: " + str(counter) + " - Now waiting for " + str(config['sleeptime']) + " seconds")
+        time.sleep(config['sleeptime'])
 
 def pytainer_init(pyTainerThread):
     # 'pyTainerThread' references the underlying thread. See the docs how to use.
