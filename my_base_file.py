@@ -34,7 +34,7 @@ def pytainer_stop(app):
 
 # This detects if the app is running inside pyTainer.
 if not 'pytainerserver' in sys.modules:
-    print("Not running as pyTainer Module, initializing manually.")
+    print("I am running as Standalone")
     
     # Import the IPC interface to communicate with pyTainer
     sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
@@ -44,6 +44,11 @@ if not 'pytainerserver' in sys.modules:
     config = pytaineripc.getConfig('unique_ident') # 'unique_ident' is the ident defined at the pytainer.toml file
     
     main() # Start our main function from here
+    
+else:
+    print("I am running as NON-Standalone")
+    
+    import pytaineripc
 
 
 
