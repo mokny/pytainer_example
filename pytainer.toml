@@ -13,3 +13,18 @@ standalone = true             # Set this to false if you want to
 author = "John Doe"
 website = "http://example.com"
 
+# Custom configuration variables. These vars can be directly edited in the pyTainer UI
+
+[config.sleeptime]
+title = "Sleeptime"
+description = "How long should we sleep between each loop?"
+type = "float"
+value = 1.2
+
+[config.greeting]
+title = "Greeting"
+description = "How shoud I greet you when the script starts?"
+type = "string"
+value = "Hello my friend!"
+
+
