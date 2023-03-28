@@ -1,14 +1,12 @@
 import time
 import sys
+import pathlib
 
 # For custom import paths, use this:
-#   import pathlib
-#   abspath = str(pathlib.Path(__file__).parent.resolve())
-#   sys.path.insert(0, abspath + '/mylibdir')
+#   sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/mylibdir')
 #   import mylib
 
 # Communicating with pyTainer if this is a standalone APP
-import pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
 import pytaineripc
 
