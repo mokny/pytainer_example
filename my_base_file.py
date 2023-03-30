@@ -49,7 +49,7 @@ if not 'pytainerserver' in sys.modules:
     sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
     import pytaineripc
 
-    pytaineripc.init('unique_ident', pytainerNotificationHandler, pytainerEventHandler)
+    pytaineripc.init(__file__, pytainerNotificationHandler, pytainerEventHandler)
     
     # Fetch the configuration from pyTainer
     config = pytaineripc.getConfig() # 'unique_ident' is the ident defined at the pytainer.toml file
