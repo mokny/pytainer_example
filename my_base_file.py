@@ -15,6 +15,8 @@ def main():
     while active:
         counter += 1
         print("Output of some loop from a non blocking thread - Loop: " + str(counter) + " - Now waiting for " + str(config['sleeptime']) + " seconds")
+        print("Raising a global event called 'MyEvent"+str(counter)+"'")
+        pytaineripc.raiseEvent('MyEvent'+str(counter))
         time.sleep(config['sleeptime'])
 
 # This function gets called when the app was started as NON-Standalone
@@ -32,6 +34,13 @@ def pytainer_stop(app):
     global active
     active = False
 
+    
+def pytainerNotificationHandler(data):
+    print('Notification received: ' + str(data))
+    
+def pytainerEventHandler(data):
+    print('Event received: ' + str(data))
+    
 # This detects if the app is running inside pyTainer.
 if not 'pytainerserver' in sys.modules:
     print("I am running as Standalone")
@@ -40,8 +49,10 @@ if not 'pytainerserver' in sys.modules:
     sys.path.insert(0, str(pathlib.Path(__file__).parent.resolve()) + '/../../ipc')
     import pytaineripc
 
+    pytaineripc.init('unique_ident', pytainerNotificationHandler, pytainerEventHandler)
+    
     # Fetch the configuration from pyTainer
-    config = pytaineripc.getConfig('unique_ident') # 'unique_ident' is the ident defined at the pytainer.toml file
+    config = pytaineripc.getConfig() # 'unique_ident' is the ident defined at the pytainer.toml file
     
     main() # Start our main function from here
     
